@@ -15,6 +15,7 @@
  */
 package com.example.wordsapp
 
+import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -49,8 +50,8 @@ class LetterAdapter :
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LetterViewHolder {
         val layout = LayoutInflater
-                .from(parent.context)
-                .inflate(R.layout.item_view, parent, false)
+            .from(parent.context)
+            .inflate(R.layout.item_view, parent, false)
         // Setup custom accessibility delegate to set the text read
         layout.accessibilityDelegate = Accessibility
         return LetterViewHolder(layout)
@@ -62,6 +63,20 @@ class LetterAdapter :
     override fun onBindViewHolder(holder: LetterViewHolder, position: Int) {
         val item = list.get(position)
         holder.button.text = item.toString()
+
+        /**when the user taps a letter, they should be taken to a second screen with a list of words.
+         * The DetailActivity is already implemented, so all that's needed is to launch it with an intent.**/
+        holder.button.setOnClickListener {
+            val context = holder.view.context
+            val intent = Intent(context, DetailActivity::class.java)
+
+            /***
+             * an extra is a piece of data, such as a number or string, that is given a name to be retrieved later.
+             * Because a DetailActivity can be shown for any letter, you need to tell it which letter to present.
+             * **/
+            intent.putExtra("letter", holder.button.text.toString())
+            context.startActivity(intent)
+        }
     }
 
     // Setup custom accessibility delegate to set the text read with
