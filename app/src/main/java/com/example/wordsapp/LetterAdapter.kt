@@ -74,7 +74,7 @@ class LetterAdapter :
              * an extra is a piece of data, such as a number or string, that is given a name to be retrieved later.
              * Because a DetailActivity can be shown for any letter, you need to tell it which letter to present.
              * **/
-            intent.putExtra("letter", holder.button.text.toString())
+            intent.putExtra(DetailActivity.LETTER, holder.button.text.toString())
             context.startActivity(intent)
         }
     }

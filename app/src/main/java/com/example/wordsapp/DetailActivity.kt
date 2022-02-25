@@ -24,6 +24,10 @@ import com.example.wordsapp.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
 
+    companion object  {
+        const val LETTER = "letter"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,7 +46,7 @@ class DetailActivity : AppCompatActivity() {
          * extras - provides a way to access all extras passed into the intent.
          * **/
 
-        val letterId = intent?.extras?.getString("letter").toString()
+        val letterId = intent?.extras?.getString(LETTER).toString()
 
 
         val recyclerView = binding.recyclerView
